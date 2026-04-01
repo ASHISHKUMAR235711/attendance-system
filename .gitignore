@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.env
+
+# Client
+client/node_modules/
+client/dist/
+
+# Server
+server/node_modules/
+server/.env
+
+# OS-specific
+.DS_Store
+Thumbs.db
