@@ -1,12 +1,14 @@
+version: "1"
 databases:
   - name: attendance-db
     plan: free
-
+    region: oregon
 services:
   - type: web
     name: attendance-backend
     runtime: node
     plan: free
+    region: oregon
     buildCommand: npm install
     startCommand: npm start
     envVars:

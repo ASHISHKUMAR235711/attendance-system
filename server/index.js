@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const pool = require('./db');
+const { pool, initDB } = require('./db');
 require('dotenv').config();
 
 const app = express();
@@ -21,6 +21,8 @@ app.get('/', (req, res) => {
     res.send('Rural School Attendance System API');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+initDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
 });

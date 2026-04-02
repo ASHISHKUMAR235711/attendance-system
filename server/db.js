@@ -5,7 +5,7 @@ const pool = process.env.DATABASE_URL
   ? new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
-      rejectUnauthorized: false, // Required for many cloud Postgres providers like Render/Heroku
+      rejectUnauthorized: false,
     },
   })
   : new Pool({
@@ -16,4 +16,18 @@ const pool = process.env.DATABASE_URL
     port: process.env.DB_PORT,
   });
 
-module.exports = pool;
+const fs = require('fs');
+const path = require('path');
+
+const initDB = async () => {
+  try {
+    const schemaPath = path.join(__dirname, 'schema.sql');
+    const schema = fs.readFileSync(schemaPath, 'utf8');
+    await pool.query(schema);
+    console.log('Database initialized successfully');
+  } catch (err) {
+    console.error('Error initializing database:', err);
+  }
+};
+
+module.exports = { pool, initDB };
