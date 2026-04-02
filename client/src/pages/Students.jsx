@@ -32,7 +32,8 @@ const Students = () => {
             setForm({ name: '', roll_number: '', class_grade: '', parent_contact: '', address: '' });
         } catch (err) {
             console.error(err);
-            alert('Error adding student');
+            const errorMessage = err.response?.data?.details || err.response?.data?.error || 'Error adding student';
+            alert(`Failed: ${errorMessage}`);
         }
     };
 

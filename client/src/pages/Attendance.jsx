@@ -119,7 +119,8 @@ const Attendance = () => {
             alert('Attendance marked successfully!');
         } catch (err) {
             console.error(err);
-            alert('Error marking attendance');
+            const errorMessage = err.response?.data?.details || err.response?.data?.error || 'Error marking attendance';
+            alert(`Failed: ${errorMessage}`);
         }
     };
 
