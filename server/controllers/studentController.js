@@ -10,7 +10,7 @@ const createStudent = async (req, res) => {
         res.json(newStudent.rows[0]);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({ error: "Server Error", details: err.message });
     }
 };
 
@@ -20,7 +20,7 @@ const getAllStudents = async (req, res) => {
         res.json(allStudents.rows);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({ error: "Server Error", details: err.message });
     }
 };
 
@@ -31,7 +31,7 @@ const getStudent = async (req, res) => {
         res.json(student.rows[0]);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({ error: "Server Error", details: err.message });
     }
 };
 
@@ -46,7 +46,7 @@ const updateStudent = async (req, res) => {
         res.json("Student was updated!");
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({ error: "Server Error", details: err.message });
     }
 };
 
@@ -57,7 +57,7 @@ const deleteStudent = async (req, res) => {
         res.json("Student was deleted!");
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({ error: "Server Error", details: err.message });
     }
 };
 

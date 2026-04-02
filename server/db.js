@@ -23,10 +23,17 @@ const initDB = async () => {
   try {
     const schemaPath = path.join(__dirname, 'schema.sql');
     const schema = fs.readFileSync(schemaPath, 'utf8');
+    console.log('Running database initialization...');
     await pool.query(schema);
     console.log('Database initialized successfully');
   } catch (err) {
     console.error('Error initializing database:', err);
+    // If it's a "relation already exists" error, we can ignore it
+    if (err.code === '42P07') {
+      console.log('Tables already exist, skipping initialization.');
+    } else {
+      throw err;
+    }
   }
 };
 

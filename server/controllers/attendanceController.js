@@ -21,7 +21,7 @@ const markAttendance = async (req, res) => {
         res.json(result.rows[0]);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({ error: "Server Error", details: err.message });
     }
 };
 
@@ -38,7 +38,7 @@ const getAttendanceByDate = async (req, res) => {
         res.json(attendance.rows);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({ error: "Server Error", details: err.message });
     }
 };
 
@@ -49,7 +49,7 @@ const getStudentAttendance = async (req, res) => {
         res.json(attendance.rows);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({ error: "Server Error", details: err.message });
     }
 };
 
